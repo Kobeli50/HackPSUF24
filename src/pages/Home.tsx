@@ -4,7 +4,9 @@ import TutorList from '../components/TutorList';
 const Home: React.FC = () => {
   return (
     <div>
-      <h1>Find Your e-kitten</h1>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <h1>Find Your e-kitten</h1>
+      </div>
       <TutorList />
     </div>
   );
