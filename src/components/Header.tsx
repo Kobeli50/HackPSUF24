@@ -53,6 +53,9 @@ const Header: React.FC = () => {
           <NavItem>
             <StyledLink to="/apply">Apply</StyledLink>
           </NavItem>
+          <NavItem>
+            <StyledLink to="/chat">AI Chat</StyledLink> {/* New AI Chat link */}
+          </NavItem>
         </Nav>
       </LeftSection>
 
