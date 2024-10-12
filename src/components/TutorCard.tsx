@@ -27,7 +27,7 @@ const TutorCard: React.FC<TutorCardProps> = ({ id, name, subject, concentration,
 
 const Card = styled.div`
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 65px;
   padding: 15px;
   display: flex;
   align-items: center;
