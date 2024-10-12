@@ -198,7 +198,7 @@ const Forum: React.FC = () => {
 };
 
 const ForumContainer = styled.div`
-  max-width: 800px;
+  max-width: 1300px;
   margin: 20px auto;
   padding: 20px;
   background-color: #f9f9f9;
@@ -265,7 +265,7 @@ const Button = styled.button`
 `;
 
 const PostList = styled.div`
-  margin-top: 10px;
+  margin-top: 20px;
 `;
 
 const PostItem = styled.div`
