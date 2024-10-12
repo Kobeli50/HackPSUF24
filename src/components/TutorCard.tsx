@@ -5,17 +5,19 @@ interface TutorCardProps {
   id: number;
   name: string;
   subject: string;
+  concentration: string;
   rating: number;
   imageUrl: string;
 }
 
-const TutorCard: React.FC<TutorCardProps> = ({ id, name, subject, rating, imageUrl }) => {
+const TutorCard: React.FC<TutorCardProps> = ({ id, name, subject, concentration, rating, imageUrl }) => {
   return (
     <Card>
       <ProfileImage src={imageUrl} alt={name} />
       <Info>
         <h3>{name}</h3>
         <p>Subject: {subject}</p>
+        <p>Concentration: {concentration}</p>
         <p>Rating: {rating}/5</p>
         <a href={`/tutor/${id}`}>View Profile</a>
       </Info>
@@ -25,7 +27,7 @@ const TutorCard: React.FC<TutorCardProps> = ({ id, name, subject, rating, imageU
 
 const Card = styled.div`
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 65px;
   padding: 15px;
   display: flex;
   align-items: center;
