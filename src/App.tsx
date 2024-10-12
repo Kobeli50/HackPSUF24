@@ -1,4 +1,3 @@
-// src/App.tsx
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
@@ -9,6 +8,8 @@ import Footer from './components/Footer';
 import Forum from './pages/Forum';
 import Login from './pages/Login'; // Import Login component
 import Apply from './pages/Apply';
+import AIchat from './pages/AIchat'; // Import AIchat component
+
 const App: React.FC = () => {
   return (
     <Router>
@@ -20,6 +21,7 @@ const App: React.FC = () => {
         <Route path="/forum" element={<Forum />} />
         <Route path="/login" element={<Login />} /> {/* Added login route */}
         <Route path="/apply" element={<Apply />} />
+        <Route path="/chat" element={<AIchat />} /> {/* Add the AIchat route here */}
       </Routes>
       <Footer />
     </Router>
