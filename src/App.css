@@ -1,0 +1,92 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Forum styles */
+.forum {
+  max-width: 800px; /* Set max width for the forum */
+  margin: 20px auto; /* Center the forum on the page */
+  padding: 20px;
+  background-color: #f9f9f9; /* Light background for contrast */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.post {
+  border: 1px solid #ddd; /* Light border for posts */
+  border-radius: 5px; /* Rounded corners for posts */
+  padding: 15px; /* Padding inside the post */
+  margin-bottom: 15px; /* Space between posts */
+  background-color: #fff; /* White background for posts */
+}
+
+.post h2 {
+  margin: 0; /* Remove default margin */
+  font-size: 1.5em; /* Increase font size for post titles */
+}
+
+.post small {
+  display: block; /* Make the author/date smaller text block */
+  color: #666; /* Gray color for metadata */
+}
+
+.post-form {
+  margin-bottom: 20px; /* Space below the form */
+}
+
+.post-form input,
+.post-form textarea {
+  width: 100%; /* Full width for inputs and textarea */
+  margin: 5px 0; /* Space above and below inputs */
+  padding: 10px; /* Padding inside inputs */
+  border: 1px solid #ccc; /* Light border for inputs */
+  border-radius: 4px; /* Rounded corners for inputs */
+}
+
+.post-form button {
+  padding: 10px 15px; /* Padding for the button */
+  background-color: #61dafb; /* Button background color */
+  color: white; /* Text color for button */
+  border: none; /* Remove border */
+  border-radius: 4px; /* Rounded corners for button */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.post-form button:hover {
+  background-color: #4db8e4; /* Darken button on hover */
+}
