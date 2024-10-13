@@ -16,7 +16,7 @@ const FooterContainer = styled.footer`
   text-align: center;
   position: relative;
   bottom: 0;
-  width: 100%;
+  width: 97.5%;
 `;
 
 export default Footer;
