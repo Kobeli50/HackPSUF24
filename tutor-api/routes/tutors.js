@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 // @route   POST /api/tutors
 // @desc    Add a new tutor
 router.post('/', async (req, res) => {
-  const { id, name, email, concentration, subject, rating, imageURL, bio } = req.body;
+  const { id, name, email, concentration, subject, rating, imageURL, bio, reviews } = req.body;
 
   const newTutor = new Tutor({
     id,
@@ -27,6 +27,7 @@ router.post('/', async (req, res) => {
     rating,
     imageURL,
     bio,
+    reviews,
   });
 
   try {
@@ -59,6 +60,33 @@ router.delete('/:id', async (req, res) => {
     res.json({ message: 'Tutor deleted' });
   } catch (error) {
     res.status(404).json({ message: 'Tutor not found' });
+  }
+});
+
+router.post('/:id/reviews', async (req, res) => {
+  const { rating, comment } = req.body;
+
+  if (!rating || !comment) {
+    return res.status(400).json({ message: 'Rating and comment are required' });
+  }
+
+  try {
+    const tutor = await Tutor.findById(req.params.id);
+    if (!tutor) {
+      return res.status(404).json({ message: 'Tutor not found' });
+    }
+
+    const newReview = {
+      userId: req.user._id,  // Assuming user is added to request object in middleware
+      rating,
+      comment,
+    };
+
+    tutor.reviews.push(newReview);
+    await tutor.save();
+    res.status(201).json({ message: 'Review added successfully', tutor });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
   }
 });
 

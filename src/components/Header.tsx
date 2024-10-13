@@ -57,9 +57,9 @@ const Header: React.FC = () => {
           <NavItem>
             <StyledLink to="/about">About</StyledLink>
           </NavItem>
-          <NavItem>
+          { /* <NavItem>
             <StyledLink to="/forum">Forum</StyledLink>
-          </NavItem>
+          </NavItem> */ }
           <NavItem>
             <StyledLink to="/apply">Apply</StyledLink>
           </NavItem>

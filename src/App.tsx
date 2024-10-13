@@ -5,7 +5,7 @@ import TutorProfile from './pages/TutorProfile';
 import About from './pages/About';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Forum from './pages/Forum';
+// import Forum from './pages/Forum';
 import Login from './pages/Login'; // Import Login component
 import Apply from './pages/Apply';
 import AIchat from './pages/AIchat'; // Import AIchat component
@@ -18,7 +18,7 @@ const App: React.FC = () => {
         <Route path="/" element={<Home />} />
         <Route path="/tutor/:id" element={<TutorProfile />} />
         <Route path="/about" element={<About />} />
-        <Route path="/forum" element={<Forum />} />
+        { /* <Route path="/forum" element={<Forum />} /> */ }
         <Route path="/login" element={<Login />} /> {/* Added login route */}
         <Route path="/apply" element={<Apply />} />
         <Route path="/chat" element={<AIchat />} /> {/* Add the AIchat route here */}
