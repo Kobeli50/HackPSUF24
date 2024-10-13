@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import TutorCard from './TutorCard';
 import axios from 'axios';
+import styled from 'styled-components';
 
 interface Tutor {
   id: number;
@@ -33,11 +34,21 @@ const TutorList: React.FC = () => {
     fetchTutors();
   }, []);
 
+  const CardGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  gap: 20px; /* Space between cards */
+  margin: 20px;
+`;
+
+
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
   return (
     <div>
+      <CardGrid>
       {tutors.map((tutor) => (
         <TutorCard
           key={tutor.id}
@@ -49,6 +60,7 @@ const TutorList: React.FC = () => {
           imageUrl={tutor.imageURL}
         />
       ))}
+      </CardGrid>
     </div>
   );
 };

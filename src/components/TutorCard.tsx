@@ -25,13 +25,16 @@ const TutorCard: React.FC<TutorCardProps> = ({ id, name, subject, concentration,
   );
 };
 
+
+
 const Card = styled.div`
   border: 1px solid #ccc;
-  border-radius: 65px;
+  border-radius: 10px;
   padding: 15px;
   display: flex;
   align-items: center;
   margin: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
 const ProfileImage = styled.img`
@@ -43,5 +46,7 @@ const ProfileImage = styled.img`
 const Info = styled.div`
   margin-left: 15px;
 `;
+
+
 
 export default TutorCard;
