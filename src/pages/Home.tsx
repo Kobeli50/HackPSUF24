@@ -5,7 +5,7 @@ const Home: React.FC = () => {
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <h1>Find Your e-kitten</h1>
+        <h1>Find Your Beaver</h1>
       </div>
       <TutorList />
     </div>
