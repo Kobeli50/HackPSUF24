@@ -131,7 +131,7 @@ const LogoImage = styled.img`
 `;
 
 const Logo = styled.h1`
-  font-size: 1.5rem;
+  font-size: 2rem;
   margin-right: 20px;
 `;
 
@@ -146,7 +146,7 @@ const NavItem = styled.div`
 const StyledLink = styled(Link)`
   color: black;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 1.10rem;
 
   &:hover {
     text-decoration: underline;

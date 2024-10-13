@@ -112,7 +112,7 @@ const Apply: React.FC = () => {
 
 // Styled components for form styling
 const FormContainer = styled.div`
-  max-width: 600px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 20px;
   background-color: #f9f9f9;
@@ -126,7 +126,7 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
-  width: 100%;
+  width: 95%;
   padding: 10px;
   margin-top: 5px;
   border: 1px solid #ccc;
@@ -135,7 +135,7 @@ const Input = styled.input`
 `;
 
 const TextArea = styled.textarea`
-  width: 100%;
+  width: 95%;
   padding: 10px;
   margin-top: 5px;
   border: 1px solid #ccc;
