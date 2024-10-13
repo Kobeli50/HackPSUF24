@@ -10,6 +10,8 @@ const Apply: React.FC = () => {
     bio: '',
   });
 
+  const [isSubmitted, setIsSubmitted] = useState(false); // New state for submission status
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData({
@@ -21,7 +23,6 @@ const Apply: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Replace with your EmailJS service ID, template ID, and user ID
     emailjs
       .send(
         'service_5mgbj2c', // Replace with your service ID
@@ -31,7 +32,7 @@ const Apply: React.FC = () => {
       )
       .then(
         (result) => {
-          alert('Application sent successfully!');
+          setIsSubmitted(true); // Update state on successful submission
           setFormData({
             name: '',
             email: '',
@@ -45,6 +46,16 @@ const Apply: React.FC = () => {
         }
       );
   };
+
+  // Conditional rendering based on form submission
+  if (isSubmitted) {
+    return (
+      <SuccessContainer>
+        <h1>Application Sent Successfully!</h1>
+        <p>Thank you for applying to become a Beaver. We will review your application and get back to you soon.</p>
+      </SuccessContainer>
+    );
+  }
 
   return (
     <FormContainer>
@@ -145,6 +156,25 @@ const SubmitButton = styled.button`
 
   &:hover {
     background-color: #45a049;
+  }
+`;
+
+// New styled component for success page
+const SuccessContainer = styled.div`
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #e0f7fa;
+  border-radius: 10px;
+  text-align: center;
+
+  h1 {
+    color: #00796b;
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: #004d40;
   }
 `;
 
