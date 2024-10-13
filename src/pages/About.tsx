@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const About: React.FC = () => {
   return (
     <AboutContainer>
-      <h1>About Yachen Sex Den</h1>
+      <h1>About Utile</h1>
       <p>
         Welcome to Yachen Sex Den, where we put the sex in YACHEN
       </p>

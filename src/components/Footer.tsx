@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Footer: React.FC = () => {
   return (
     <FooterContainer>
-      <p>© 2024 Yachen Sex Den. All rights reserved.</p>
+      <p>© 2024 Utile. All rights reserved.</p>
     </FooterContainer>
   );
 };
