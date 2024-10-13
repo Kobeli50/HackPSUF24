@@ -72,7 +72,7 @@ const Header: React.FC = () => {
       {/* Right section with Discord logo and Login & Sign Up buttons */}
       <RightSection>  
         <DiscordContainer>
-          <a href="https://discord.gg/QDHRASb36m" target="_blank" rel="noopener noreferrer">
+          <a href="https://discord.gg/UmS4VXGjRz" target="_blank" rel="noopener noreferrer">
             <DiscordLogo
               src="https://logos-world.net/wp-content/uploads/2020/12/Discord-Logo.png"
               alt="Discord Logo"
