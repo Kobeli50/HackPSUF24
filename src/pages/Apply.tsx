@@ -48,7 +48,7 @@ const Apply: React.FC = () => {
 
   return (
     <FormContainer>
-      <h1>Apply to Become a Tutor</h1>
+      <h1>Apply to Become a Beaver</h1>
       <form onSubmit={handleSubmit}>
         <Label>
           Name:
