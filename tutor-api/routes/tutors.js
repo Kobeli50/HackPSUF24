@@ -41,10 +41,13 @@ router.post('/', async (req, res) => {
 // @desc    Get a specific tutor by ID
 router.get('/:id', async (req, res) => {
   try {
-    const tutor = await Tutor.findById(req.params.id);
+    const tutor = await Tutor.findOne({ id: Number(req.params.id) }); // Query by custom 'id'
+    if (!tutor) {
+      return res.status(404).json({ message: 'Tutor not found' });
+    }
     res.json(tutor);
   } catch (error) {
-    res.status(404).json({ message: 'Tutor not found' });
+    res.status(500).json({ message: 'Server error' });
   }
 });
 
