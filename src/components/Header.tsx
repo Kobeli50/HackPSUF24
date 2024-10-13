@@ -48,7 +48,7 @@ const Header: React.FC = () => {
           </StyledLink>
         </LogoContainer>
         
-        <Logo>Yachen Sex Den</Logo>
+        <Logo>Utile</Logo>
         
         <Nav>
           <NavItem>
