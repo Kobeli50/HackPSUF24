@@ -22,6 +22,9 @@ mongoose.connect(process.env.MONGO_URI, {
 const tutorRoutes = require('./routes/tutors');
 app.use('/api/tutors', tutorRoutes);
 
+const userRoutes = require('./routes/users');
+app.use('/api', userRoutes);
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

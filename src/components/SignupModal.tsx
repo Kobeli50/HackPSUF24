@@ -1,6 +1,7 @@
 // src/components/SignupModal.tsx
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 interface ModalProps {
   isOpen: boolean;
@@ -11,12 +12,37 @@ const SignupModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
 
-  const handleSignup = (e: React.FormEvent) => {
+  const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle signup logic here
-    console.log('Signing up:', { username, email, password });
-    onClose(); // Close the modal after signup attempt
+    setError(null);
+    setSuccess(null);
+
+    try {
+
+      const response = await axios.post('http://localhost:5001/api/signup', {
+        username,
+        email,
+        password,
+      });
+      
+      setSuccess(response.data.message);
+      onClose();
+
+    } catch (error) {
+
+      if(axios.isAxiosError(error)) {
+        if (error.response && error.response.data.message) {
+          setError(error.response.data.message);
+      } else {
+        setError('Error signing up. Try again.');
+        } 
+    } else {
+      setError('An unexpected error occurred. Try again.');
+      }
+    }
   };
 
   if (!isOpen) return null; // Return null if the modal is not open
@@ -26,6 +52,8 @@ const SignupModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
       <ModalContainer>
         <CloseButton onClick={onClose}>X</CloseButton>
         <h2>Sign Up</h2>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+        {success && <SuccessMessage>{success}</SuccessMessage>}
         <form onSubmit={handleSignup}>
           <Input
             type="text"
@@ -106,6 +134,16 @@ const SubmitButton = styled.button`
   &:hover {
     background-color: #45a049;
   }
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: 14px;
+`;
+
+const SuccessMessage = styled.p`
+  color: green;
+  font-size: 14px;
 `;
 
 export default SignupModal;

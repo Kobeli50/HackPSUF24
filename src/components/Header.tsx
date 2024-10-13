@@ -9,6 +9,7 @@ import emailjs from 'emailjs-com';
 const Header: React.FC = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); // State to manage login modal visibility
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false); // State to manage signup modal visibility
+  const [user, setUser] = useState<any | null>(null);
 
   const handleLoginClick = () => {
     setIsLoginModalOpen(true); // Open the login modal
@@ -24,6 +25,15 @@ const Header: React.FC = () => {
 
   const handleCloseSignupModal = () => {
     setIsSignupModalOpen(false); // Close the signup modal
+  };
+  
+  const handleLoginSuccess = (loggedInUser: any) => {
+    setUser(loggedInUser); // Update the state with logged-in user
+    setIsLoginModalOpen(false); // Close the login modal after successful login
+  };
+
+  const handleLogout = () => {
+    setUser(null); // Clear the logged-in user on logout
   };
 
   return (
@@ -71,14 +81,23 @@ const Header: React.FC = () => {
         </DiscordContainer>
 
         <ButtonsContainer>
-          <LoginButton onClick={handleLoginClick}>Login</LoginButton> {/* Open login modal on click */}
-          <SignupButton onClick={handleSignupClick}>Sign Up</SignupButton> {/* Open signup modal on click */}
+        {user ? (
+            <>
+              <p>Welcome, {user.username}!</p>
+              <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
+            </>
+          ) : (
+            <>
+              <LoginButton onClick={handleLoginClick}>Login</LoginButton> {/* Open login modal on click */}
+              <SignupButton onClick={handleSignupClick}>Sign Up</SignupButton> {/* Open signup modal on click */}
+            </>
+          )}
         </ButtonsContainer>
       </RightSection>
       
 
       {/* Render the Login and Signup Modals */}
-      <LoginModal isOpen={isLoginModalOpen} onClose={handleCloseLoginModal} />
+      <LoginModal isOpen={isLoginModalOpen} onClose={handleCloseLoginModal} onLoginSuccess={handleLoginSuccess} />
       <SignupModal isOpen={isSignupModalOpen} onClose={handleCloseSignupModal} />
     </HeaderContainer>
   );
@@ -193,6 +212,21 @@ const SupportButton = styled.button`
 
   &:hover {
     background-color: #F57C00; /* Darker orange on hover */
+  }
+`;
+
+const LogoutButton = styled.button`
+  padding: 10px 15px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #e53935;
   }
 `;
 

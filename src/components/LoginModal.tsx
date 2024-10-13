@@ -1,21 +1,43 @@
 // src/components/LoginModal.tsx
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onLoginSuccess: (user: any) => void;
 }
 
-const LoginModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+const LoginModal: React.FC<ModalProps> = ({ isOpen, onClose, onLoginSuccess }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log('Logging in:', { username, password });
-    onClose(); // Close the modal after login attempt
+    setError(null);
+    try {
+      const response = await axios.post('http://localhost:5001/api/login', {
+        username,
+        password,
+      });
+
+      // If login is successful, pass the user data to the parent component (or store in state)
+      onLoginSuccess(response.data.user);
+      onClose();  // Close the modal
+    } catch (error) {
+      // Handle any error response from the API
+      if (axios.isAxiosError(error)) {
+        if (error.response && error.response.data.message) {
+          setError(error.response.data.message);  // Show API error message
+        } else {
+          setError('Login failed. Please try again.');
+        }
+      } else {
+        setError('An unexpected error occurred. Please try again.');
+      }
+    }
   };
 
   if (!isOpen) return null; // Return null if the modal is not open
@@ -25,6 +47,7 @@ const LoginModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
       <ModalContainer>
         <CloseButton onClick={onClose}>X</CloseButton>
         <h2>Login</h2>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
         <form onSubmit={handleLogin}>
           <Input
             type="text"
@@ -98,6 +121,11 @@ const SubmitButton = styled.button`
   &:hover {
     background-color: #45a049;
   }
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: 14px;
 `;
 
 export default LoginModal;
