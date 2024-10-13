@@ -7,7 +7,33 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 
 // Middleware
-app.use(cors());
+const corsOptions = {
+  origin: ['http://localhost:3000', 'https://your-frontend-domain.com'],  // Allow your frontend during development and production
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],  // Allow these methods
+  allowedHeaders: ['Content-Type', 'Authorization'],  // Allow these headers
+  credentials: true,  // Allow credentials (cookies, authentication headers, etc.)
+  optionsSuccessStatus: 200,  // Some legacy browsers choke on 204
+};
+
+// Use CORS middleware
+app.use(cors(corsOptions));
+
+// Manually handle preflight OPTIONS requests
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  
+  // Handle preflight requests for POST, PUT, DELETE
+  if (req.method === 'OPTIONS') {
+    return res.status(200).json({});
+  }
+  
+  next();
+});
+
+// Middleware to parse JSON
 app.use(express.json());
 
 // Connect to MongoDB
@@ -29,4 +55,3 @@ app.use('/api', userRoutes);
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-

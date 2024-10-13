@@ -33,24 +33,40 @@ router.post('/', async (req, res) => {
   try {
     const savedTutor = await newTutor.save();
     res.json(savedTutor);
-  } catch (error) {
+  } catch (error) {   
     res.status(400).json({ message: error.message });
   }
 });
 
 // @route   GET /api/tutors/:id
 // @desc    Get a specific tutor by ID
-router.get('/:id', async (req, res) => {
+router.get('/', async (req, res) => {
+  const { subject, concentration } = req.query;
+
   try {
-    const tutor = await Tutor.findOne({ id: Number(req.params.id) }); // Query by custom 'id'
-    if (!tutor) {
-      return res.status(404).json({ message: 'Tutor not found' });
+    let query = {};
+
+    if (subject) {
+      query.subject = subject;
     }
-    res.json(tutor);
+
+    if (concentration) {
+      query.concentration = concentration;
+    }
+
+    // Debugging: Log the query being sent to the database
+    console.log("Query:", query);
+
+    const tutors = await Tutor.find(query);
+    res.json(tutors);
   } catch (error) {
-    res.status(500).json({ message: 'Server error' });
+    // Log the full error to the console for debugging
+    console.error("Error fetching tutors:", error);
+    res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
+
+
 
 // @route   DELETE /api/tutors/:id
 // @desc    Delete a tutor
