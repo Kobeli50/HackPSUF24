@@ -18,7 +18,7 @@ const AIchat: React.FC = () => {
     // Fetch tutors from your MongoDB database using your backend API
     const fetchTutors = async (query: string) => {
         try {
-            const tutorsResponse = await axios.get('http://localhost:5001/api/tutors', {
+            const tutorsResponse = await axios.get('http://localhost:3000/api/tutors', {
                 params: {
                     subject: encodeURIComponent(query)  // Encode the user input properly
                 }
